@@ -1,0 +1,89 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build_pc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build
+        run: |
+          dependencies/python/configure_build.py pc
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: GH3DX-PC
+          path: out/pc
+
+  build_xbox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build
+        run: |
+          dependencies/python/configure_build.py xbox
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: GH3DX-Xbox
+          path: out/xbox
+
+  build_ps3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build
+        run: |
+          dependencies/python/configure_build.py ps3
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: GH3DX-PS3
+          path: out/ps3
+
+  build_ps2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build
+        run: |
+          dependencies/python/configure_build.py ps2
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: GH3DX-PS2
+          path: out/ps2
+
+  build_wii:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build
+        run: |
+          dependencies/python/configure_build.py wii
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: GH3DX-Wii
+          path: out/wii
